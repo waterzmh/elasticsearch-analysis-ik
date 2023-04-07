@@ -89,6 +89,7 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.25</version>
             <scope>runtime</scope>
+<!--                        <scope>system</scope>-->
         </dependency>
 
         <dependency>
@@ -97,7 +98,6 @@
             <version>${elasticsearch.version}</version>
             <scope>compile</scope>
         </dependency>
-
 
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
@@ -141,6 +141,9 @@
                 <configuration>
                     <source>${maven.compiler.target}</source>
                     <target>${maven.compiler.target}</target>
+<!--                    <compilerArgs>-->
+<!--                        <extdir>${project.basedir}/target</extdir>-->
+<!--                    </compilerArgs>-->
                 </configuration>
             </plugin>
             <plugin>
@@ -168,7 +171,6 @@
             </plugin>
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
-
                 <configuration>
                     <appendAssemblyId>false</appendAssemblyId>
                     <outputDirectory>${project.build.directory}/releases/</outputDirectory>

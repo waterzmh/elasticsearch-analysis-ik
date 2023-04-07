@@ -4,13 +4,13 @@
 package org.wltea.analyzer.cfg;
 
 import org.elasticsearch.common.inject.Inject;
-import org.elasticsearch.core.PathUtils;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.env.Environment;
 import org.elasticsearch.plugin.analysis.ik.AnalysisIkPlugin;
 import org.wltea.analyzer.dic.Dictionary;
 
 import java.io.File;
+import java.nio.file.FileSystems;
 import java.nio.file.Path;
 
 public class Configuration {
@@ -42,8 +42,9 @@ public class Configuration {
 	}
 
 	public Path getConfigInPluginDir() {
-		return PathUtils
-				.get(new File(AnalysisIkPlugin.class.getProtectionDomain().getCodeSource().getLocation().getPath())
+		// 参考 8.*的es内部实现调整了 7.*下的使用
+		return FileSystems.getDefault()
+				.getPath(new File(AnalysisIkPlugin.class.getProtectionDomain().getCodeSource().getLocation().getPath())
 						.getParent(), "config")
 				.toAbsolutePath();
 	}
